@@ -1,13 +1,17 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const responseHandler = require('./internal/handler/handler')
+const {ResponseHandler, response} = require('./internal/handler/handler')
 
-app.get('/',(req, res)) => {
-    res.send("Selamat datang di ASTROSERVICE");
-}
+require('dotenv').config()
 
-app.get('/products',(req,res) => {
-    res.json({
-        
-    })
+const port = process.env.PORT 
+
+const resHandler = new ResponseHandler()
+app.get('/ping',resHandler.response)
+app.get('/ping2',response)
+app.post('/login',)
+
+app.listen(port,()=>{
+    console.log(`sedang berjalan di ${port}`)
 })
